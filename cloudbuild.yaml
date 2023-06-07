@@ -1,14 +1,13 @@
 steps:
   # [START copy-dags]
   - id: 'copy-dags'
-    waitFor: ['-']
     name: 'google/cloud-sdk'
     dir: './infra'
     entrypoint: 'sh'
     args:
       - '-c'
       - |
-          if [ "${BRANCH_NAME}" == "main" && "${_TAG}" == "prod" ]; then
+          if [ "${BRANCH_NAME}" == "main" ] && [ "${_TAG}" == "prod" ]; then
             echo "deploy"
           else
             echo "don't deploy - ${BRANCH_NAME} - ${_TAG}"
