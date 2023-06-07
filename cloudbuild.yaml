@@ -1,23 +1,22 @@
 steps:
-  - id: "tf-plan"
-    waitFor: ['-']
-    name: "hashicorp/terraform:1.4.4"
-    dir: "./infra"
-    entrypoint: "sh"
+  # [START copy-dags]
+  - id: 'copy-dags'
+    name: 'google/cloud-sdk'
+    dir: './infra'
+    entrypoint: 'bash'
     args:
-      - "-c"
+      - '-c'
       - |
-        echo "Applying TF"
-        terraform init
-        terraform plan
-  - id: "tf-apply"
-    waitFor: ['tf-plan']
-    name: "hashicorp/terraform:1.4.4"
-    dir: "./infra"
-    entrypoint: "sh"
-    args:
-      - "-c"
-      - |
-        echo "Applying TF"
-        terraform init
-        terraform apply --auto-approve
+          deploy="n"
+          if [ "${BRANCH_NAME}" == "main1" ] && [ "${_TAG}" == "prod" ] ; then
+            echo "Prod Deployment, deploying in env:${_TAG} from branch:${BRANCH_NAME}"
+            deploy="y"
+          elif [ "${BRANCH_NAME}" == "release" ] && [ "${_TAG}" == "test" ] ; then
+            echo "Release Deployment, deploying in env:${_TAG} from branch:${BRANCH_NAME}"
+            deploy="y"
+          elif [ "${_TAG}" != "prod" ] && [ "${_TAG}" != "test" ] && [ "${BRANCH_NAME}" != "main1" ] && [ "${BRANCH_NAME}" != "release" ]; then
+            echo "Dev Deployment, deploying in env:${_TAG} from branch:${BRANCH_NAME}"
+            deploy="y"
+          fi
+          echo "Deploy Status ${deploy}"
+  # [END copy-dags]
