@@ -7,7 +7,7 @@ steps:
     args:
       - '-c'
       - |
-          if [ "${BRANCH_NAME}" == "cb" ] && [ "${_TAG}" == "dev" ]; then
+          if [ "${BRANCH_NAME}" == "cb" ] && [ "${_TAG}" == "dev" ] ; then
             echo "deploy"
           else
             echo "don't deploy - ${BRANCH_NAME} - ${_TAG}"
