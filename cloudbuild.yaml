@@ -3,7 +3,7 @@ steps:
   - id: 'copy-dags'
     name: 'google/cloud-sdk'
     dir: './infra'
-    entrypoint: 'sh'
+    entrypoint: 'bash'
     args:
       - '-c'
       - |
