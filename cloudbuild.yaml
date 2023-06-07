@@ -8,13 +8,13 @@ steps:
       - '-c'
       - |
           deploy="n"
-          if [ "${BRANCH_NAME}" == "main" ] && [ "${_TAG}" == "prod" ] ; then
+          if [ "${BRANCH_NAME}" == "main1" ] && [ "${_TAG}" == "prod" ] ; then
             echo "Prod Deployment, deploying in env:${_TAG} from branch:${BRANCH_NAME}"
             deploy="y"
           elif [ "${BRANCH_NAME}" == "release" ] && [ "${_TAG}" == "test" ] ; then
             echo "Release Deployment, deploying in env:${_TAG} from branch:${BRANCH_NAME}"
             deploy="y"
-          elif [ "${_TAG}" != "prod" ] && [ "${_TAG}" != "test" ] && [ "${BRANCH_NAME}" != "main" ] && [ "${BRANCH_NAME}" != "release" ]; then
+          elif [ "${_TAG}" != "prod" ] && [ "${_TAG}" != "test" ] && [ "${BRANCH_NAME}" != "main1" ] && [ "${BRANCH_NAME}" != "release" ]; then
             echo "Dev Deployment, deploying in env:${_TAG} from branch:${BRANCH_NAME}"
             deploy="y"
           fi
