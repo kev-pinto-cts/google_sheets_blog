@@ -1,23 +1,12 @@
 steps:
-  - id: "tf-plan"
+  - id: "copy-dags"
     waitFor: ['-']
-    name: "hashicorp/terraform:1.4.4"
+    name: 'google/cloud-sdk'
     dir: "./infra"
     entrypoint: "sh"
     args:
       - "-c"
       - |
-        echo "Applying TF"
-        terraform init
-        terraform plan
-  - id: "tf-apply"
-    waitFor: ['tf-plan']
-    name: "hashicorp/terraform:1.4.4"
-    dir: "./infra"
-    entrypoint: "sh"
-    args:
-      - "-c"
-      - |
-        echo "Applying TF"
-        terraform init
-        terraform apply --auto-approve
+        echo "***********************"
+        echo "$BRANCH_NAME"
+        echo "***********************"
