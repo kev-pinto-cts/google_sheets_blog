@@ -15,7 +15,7 @@ steps:
             echo "Release Deployment, deploying in env:${_TAG} from branch:${BRANCH_NAME}"
             deploy="y"
           elif [ "${_TAG}" != "prod" ] && [ "${_TAG}" != "test" ] && [ "${BRANCH_NAME}" != "main1" ] && [ "${BRANCH_NAME}" != "release" ]; then
-            echo "Dev Deployment, deploying in env:${_TAG} from branch:${BRANCH_NAME}"
+            echo "Dev Deployment, deploying in env:${_TAG} from TAG:${$TAG_NAME}"
             deploy="y"
           fi
           echo "Deploy Status ${deploy}"
