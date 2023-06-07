@@ -10,3 +10,8 @@ steps:
         echo "***********************"
         echo "$BRANCH_NAME"
         echo "***********************"
+        if [ ${BRANCH_NAME} == "main" && "${_TAG}" == "prod" ]; then
+          echo "deploy"
+        else
+          echo "don't deploy"
+        fi
